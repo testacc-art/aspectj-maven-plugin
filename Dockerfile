@@ -1,4 +1,4 @@
-FROM scratch
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 WORKDIR /app/dir
 COPY ./ ./
 RUN choco install adoptopenjdk8openj9
