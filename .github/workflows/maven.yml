@@ -76,4 +76,6 @@ jobs:
           distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
-        run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
+        run: |
+          docker build -t test/myapp .
+          docker run test/myapp
