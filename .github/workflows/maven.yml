@@ -78,6 +78,7 @@ jobs:
       - name: Build with Maven
         run: |
           docker images
+          docker run hello-world
           docker build -t test/myapp .
           docker images
           docker run test/myapp
