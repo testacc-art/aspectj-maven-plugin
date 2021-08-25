@@ -41,20 +41,6 @@ jobs:
       matrix:
         os: [ ubuntu-latest, windows-latest, macOS-latest ]
         java:
-          # Hotspot VM, the "default" VM
-          - version: 8
-            dist: adopt-hotspot
-          - version: 11
-            dist: adopt-hotspot
-          - version: 16
-            dist: adopt-hotspot
-          # Zulu VM, based on Hotspot
-          - version: 8
-            dist: zulu
-          - version: 11
-            dist: zulu
-          - version: 16
-            dist: zulu
           # OpenJ9, an alternate JVM implementation.
           # TODO: Replace version by '8' again after problems in 8.0.302+8 on Windows are fixed
           - version: 8.0.292+10
@@ -76,16 +62,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up cache for ~./m2/repository
-        uses: actions/cache@v2.1.6
-        with:
-          path: |
-            ~/.m2/repository
-            !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
-          key: maven-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-${{ matrix.os }}-java${{ matrix.java }}-
-            maven-${{ matrix.os }}-
+      # - name: Set up cache for ~./m2/repository
+      #   uses: actions/cache@v2.1.6
+      #   with:
+      #     path: |
+      #       ~/.m2/repository
+      #       !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
+      #     key: maven-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+      #     restore-keys: |
+      #       maven-${{ matrix.os }}-java${{ matrix.java }}-
+      #       maven-${{ matrix.os }}-
 
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
