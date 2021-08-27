@@ -69,5 +69,4 @@ jobs:
           distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
-        shell: bash
         run: mvn --show-version --errors --batch-mode '-Dinvoker.streamLogsOnFailures=true' clean verify site
