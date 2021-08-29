@@ -62,6 +62,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4
+        with:
+          maven-version: 3.5.4
+
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
         with:
