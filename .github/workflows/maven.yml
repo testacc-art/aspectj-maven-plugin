@@ -1,4 +1,3 @@
-
 # The MIT License
 #
 # Copyright 2005-2006 The Codehaus.
@@ -75,6 +74,7 @@ jobs:
           distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
+        shell: pwsh
         run: |
-            rm -rf C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre
+            Remove-Item -Recurse -Force C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre
             mvn --show-version --errors --batch-mode clean verify site
