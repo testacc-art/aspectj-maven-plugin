@@ -49,7 +49,7 @@ jobs:
             dist: adopt-openj9
           - version: 16
             dist: adopt-openj9
-          - version: 9
+          - version: 10
             dist: adopt-openj9
       fail-fast: false
 
@@ -76,7 +76,7 @@ jobs:
           distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
-        shell: bash
+        shell: pwsh
         run: |
             # Remove-Item -Recurse -Force C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre
-            sudo mvn --show-version --errors --batch-mode clean verify site
+            mvn --show-version --errors --batch-mode clean verify site
