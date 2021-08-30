@@ -76,7 +76,7 @@ jobs:
           distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
-        shell: pwsh
+        shell: bash
         run: |
             # Remove-Item -Recurse -Force C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre
-            mvn --show-version --errors --batch-mode clean verify site
+            sudo mvn --show-version --errors --batch-mode clean verify site
