@@ -44,7 +44,7 @@ jobs:
           # OpenJ9, an alternate JVM implementation.
           # TODO: Replace version by '8' again after problems in 8.0.302+8 on Windows are fixed
           - version: 8
-            dist: temurin
+            dist: adopt-openj9
           - version: 11
             dist: adopt-openj9
           - version: 16
