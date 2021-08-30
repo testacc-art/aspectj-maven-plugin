@@ -43,8 +43,8 @@ jobs:
         java:
           # OpenJ9, an alternate JVM implementation.
           # TODO: Replace version by '8' again after problems in 8.0.302+8 on Windows are fixed
-          - version: 8.0.292+10
-            dist: adopt-openj9
+          - version: 8
+            dist: temurin
           - version: 11
             dist: adopt-openj9
           - version: 16
@@ -78,8 +78,4 @@ jobs:
       - name: Build with Maven
         shell: pwsh
         run: |
-            choco uninstall kotlinc
-            # Remove-Item -Recurse -Force C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre
-            New-Item -Path C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre\javadoc.exe -ItemType SymbolicLink -Value C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\bin\javadoc.exe
-            New-Item -Path C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre\bin\javadoc.exe -ItemType SymbolicLink -Value C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\bin\javadoc.exe
             mvn --show-version --errors --batch-mode clean verify site
