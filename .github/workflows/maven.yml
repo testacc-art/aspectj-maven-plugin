@@ -39,7 +39,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+        os: [ ubuntu-latest, windows-latest, windows-2016 ]
         java:
           # OpenJ9, an alternate JVM implementation.
           # TODO: Replace version by '8' again after problems in 8.0.302+8 on Windows are fixed
@@ -64,10 +64,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v4
-        with:
-          maven-version: 3.5.4
+#       - name: Set up Maven
+#         uses: stCarolas/setup-maven@v4
+#         with:
+#           maven-version: 3.5.4
 
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
