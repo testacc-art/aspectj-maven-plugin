@@ -39,46 +39,59 @@ jobs:
 
     strategy:
       matrix:
-        os: [ windows-2016, windows-latest ]
+        os: [ self-hosted ]
         java:
+          # Hotspot VM, the "default" VM
+#           - version: 8
+#             dist: adopt-hotspot
+#           - version: 11
+#             dist: adopt-hotspot
+#           - version: 16
+#             dist: adopt-hotspot
+          # Zulu VM, based on Hotspot
+#           - version: 8
+#             dist: zulu
+#           - version: 11
+#             dist: zulu
+#           - version: 16
+#             dist: zulu
           # OpenJ9, an alternate JVM implementation.
           # TODO: Replace version by '8' again after problems in 8.0.302+8 on Windows are fixed
-          - version: 8.0.242+8.1
+          - version: 8.0.292+10
             dist: adopt-openj9
+#           - version: 11
+#             dist: adopt-openj9
+#           - version: 16
+#             dist: adopt-openj9
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
 
     steps:
 
-      - name: Set Git options
-        # Check out as-is, commit Unix-style line endings
-        run: git config --global core.autocrlf input
+#       - name: Set Git options
+#         # Check out as-is, commit Unix-style line endings
+#         run: git config --global core.autocrlf input
 
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Set up cache for ~./m2/repository
-      #   uses: actions/cache@v2.1.6
-      #   with:
-      #     path: |
-      #       ~/.m2/repository
-      #       !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
-      #     key: maven-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
-      #     restore-keys: |
-      #       maven-${{ matrix.os }}-java${{ matrix.java }}-
-      #       maven-${{ matrix.os }}-
+#       - name: Set up cache for ~./m2/repository
+#         uses: actions/cache@v2.1.6
+#         with:
+#           path: |
+#             ~/.m2/repository
+#             !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
+#           key: maven-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+#           restore-keys: |
+#             maven-${{ matrix.os }}-java${{ matrix.java }}-
+#             maven-${{ matrix.os }}-
 
-      # - name: Set up JDK
-      #   uses: actions/setup-java@v2.2.0
-      #   with:
-      #     java-version: ${{ matrix.java.version }}
-      #     distribution: ${{ matrix.java.dist }}
+      - name: Set up JDK
+        uses: actions/setup-java@v2.3.0
+        with:
+          java-version: ${{ matrix.java.version }}
+          distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
-        run: |
-          docker images
-          docker run hello-world
-          docker build -t test/myapp .
-          docker images
-          docker run test/myapp
+        run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
