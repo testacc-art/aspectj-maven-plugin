@@ -69,6 +69,12 @@ jobs:
 #         with:
 #           maven-version: 3.5.4
 
+      - run: |
+          wget \
+            --no-verbose \
+            --directory-prefix $RUNNER_TEMP \
+            https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u192-b98/OpenJDK8U-jdk_x86-32_windows_openj9_0.11.0_8u192b98.zip
+
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
         with:
