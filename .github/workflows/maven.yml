@@ -39,17 +39,11 @@ jobs:
 
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-2022, windows-2016 ]
+        os: [ self-hosted ]
         java:
           # OpenJ9, an alternate JVM implementation.
           # TODO: Replace version by '8' again after problems in 8.0.302+8 on Windows are fixed
           - version: 8
-            dist: adopt-openj9
-          - version: 11
-            dist: adopt-openj9
-          - version: 16
-            dist: adopt-openj9
-          - version: 10
             dist: adopt-openj9
       fail-fast: false
 
@@ -68,12 +62,6 @@ jobs:
 #         uses: stCarolas/setup-maven@v4
 #         with:
 #           maven-version: 3.5.4
-
-      - run: |
-          wget \
-            --no-verbose \
-            --directory-prefix $RUNNER_TEMP \
-            https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u192-b98/OpenJDK8U-jdk_x86-32_windows_openj9_0.11.0_8u192b98.zip
 
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
