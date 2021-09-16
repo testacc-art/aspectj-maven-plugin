@@ -82,4 +82,4 @@ jobs:
             # Remove-Item -Recurse -Force C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre
             New-Item -Path C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre\javadoc.exe -ItemType SymbolicLink -Value C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\bin\javadoc.exe
             New-Item -Path C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\jre\bin\javadoc.exe -ItemType SymbolicLink -Value C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\bin\javadoc.exe
-            mvn --show-version --errors --batch-mode clean verify site
+            mvn --show-version --errors --batch-mode clean verify site --debug
