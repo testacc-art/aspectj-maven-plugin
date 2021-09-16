@@ -106,6 +106,7 @@ jobs:
       - name: Build with Maven
         run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
         env:
+          PATH: "C:\Program Files\Git\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\Chocolatey\bin;C:\Program Files\PowerShell\7\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.8.2\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\bin;"
 #           _JAVA_OPTIONS: "-Xmx4g -XX:NewSize=512M"
-          JAVA_TOOLS_OPTIONS: "-XXallowvmshutdown:false"
-          JAVA_COMPILER: "NONE"
+#           JAVA_TOOLS_OPTIONS: "-XXallowvmshutdown:false"
+#           JAVA_COMPILER: "NONE"
