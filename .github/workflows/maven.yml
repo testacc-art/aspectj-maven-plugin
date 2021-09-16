@@ -39,7 +39,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ windows-latest ]
+        os: [ self-hosted ]
         java:
           # Hotspot VM, the "default" VM
 #           - version: 8
@@ -87,25 +87,25 @@ jobs:
 #             maven-${{ matrix.os }}-java${{ matrix.java }}-
 #             maven-${{ matrix.os }}-
       
-      - name: configure Pagefile
-        uses: al-cheb/configure-pagefile-action@v1.2
-        with:
-          minimum-size: 16GB
-          maximum-size: 16GB
-          disk-root: "C:"
+#       - name: configure Pagefile
+#         uses: al-cheb/configure-pagefile-action@v1.2
+#         with:
+#           minimum-size: 16GB
+#           maximum-size: 16GB
+#           disk-root: "C:"
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
         with:
           java-version: ${{ matrix.java.version }}
           distribution: ${{ matrix.java.dist }}
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.2
-        with:
-          maven-version: 3.6.3
+#       - name: Set up Maven
+#         uses: stCarolas/setup-maven@v4.2
+#         with:
+#           maven-version: 3.6.3
       - run: mvn --version
       - name: Build with Maven
         run: |
-          $env:PATH = "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.8.2\bin;C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\bin"
+          # $env:PATH = "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.8.2\bin;C:\hostedtoolcache\windows\Java_Adopt-OpenJ9_jdk\8.0.292-10\x64\bin"
           mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
 #         env:
 #           _JAVA_OPTIONS: "-Xmx4g -XX:NewSize=512M"
