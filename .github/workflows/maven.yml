@@ -39,7 +39,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ self-hosted ]
+        os: [ windows-latest ]
         java:
           # Hotspot VM, the "default" VM
 #           - version: 8
@@ -86,7 +86,11 @@ jobs:
 #           restore-keys: |
 #             maven-${{ matrix.os }}-java${{ matrix.java }}-
 #             maven-${{ matrix.os }}-
-
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.2
+        with:
+          maven-version: 3.6.3
+      - run: mvn --version
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
         with:
