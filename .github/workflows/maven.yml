@@ -108,3 +108,4 @@ jobs:
         env:
 #           _JAVA_OPTIONS: "-Xmx4g -XX:NewSize=512M"
           JAVA_TOOLS_OPTIONS: "-XXallowvmshutdown:false"
+          JAVA_COMPILER: "NONE"
