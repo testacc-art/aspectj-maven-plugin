@@ -105,5 +105,6 @@ jobs:
       - run: mvn --version
       - name: Build with Maven
         run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
-#         env:
+        env:
 #           _JAVA_OPTIONS: "-Xmx4g -XX:NewSize=512M"
+          JAVA_TOOLS_OPTIONS: "-XXallowvmshutdown:false"
