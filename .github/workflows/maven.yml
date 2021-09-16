@@ -86,7 +86,13 @@ jobs:
 #           restore-keys: |
 #             maven-${{ matrix.os }}-java${{ matrix.java }}-
 #             maven-${{ matrix.os }}-
-
+      
+      - name: configure Pagefile
+        uses: al-cheb/configure-pagefile-action@v1.2
+        with:
+          minimum-size: 16GB
+          maximum-size: 16GB
+          disk-root: "C:"
       - name: Set up JDK
         uses: actions/setup-java@v2.3.0
         with:
@@ -99,5 +105,5 @@ jobs:
       - run: mvn --version
       - name: Build with Maven
         run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
-        env:
-          _JAVA_OPTIONS: "-Xmx4g -XX:NewSize=512M"
+#         env:
+#           _JAVA_OPTIONS: "-Xmx4g -XX:NewSize=512M"
