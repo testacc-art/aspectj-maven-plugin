@@ -101,12 +101,6 @@ jobs:
 
       - name: Build with Maven
         shell: pwsh
-        run: |
-          if($IsWindows) {
-            $JAVA_BIN_PATH = Join-Path $env:JAVA_HOME bin
-            echo "JAVA_BIN_PATH is $JAVA_BIN_PATH"
-            $env:PATH = "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.8.2\bin;$JAVA_BIN_PATH"
-          }
-          mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
+        run:  mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
 
 
