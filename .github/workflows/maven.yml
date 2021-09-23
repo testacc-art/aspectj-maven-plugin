@@ -39,7 +39,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ windows-latest, macOS-latest, ubuntu-latest ]
+        os: [ windows-2022, macOS-latest, ubuntu-latest ]
         java:
           # Hotspot VM, the "default" VM
           - version: 8
@@ -100,7 +100,6 @@ jobs:
           distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
-        shell: pwsh
         run:  mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
 
 
