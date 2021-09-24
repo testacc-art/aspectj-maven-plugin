@@ -39,7 +39,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ windows-2022 ]
+        os: [ windows-2016 ]
         java:
           # Hotspot VM, the "default" VM
           - version: 8
